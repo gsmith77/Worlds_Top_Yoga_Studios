@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/Worlds_Top_Yoga_Studios'
+require './lib/Worlds_Top_Yoga_Studios'
 
-ruby lib/Worlds_Top_Yoga_Studios/start.rb
+WorldsTopYogaStudios::CLI.new.call
