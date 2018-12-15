@@ -38,5 +38,5 @@ class WorldsTopYogaStudios::CLI
   def goodbye
     puts "See you later! As always, namaste."
   end
-  
+end
 end

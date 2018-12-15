@@ -1,4 +1,3 @@
-require 'pry'
 class WorldsTopYogaStudios::Scraper
   
   def get_page
