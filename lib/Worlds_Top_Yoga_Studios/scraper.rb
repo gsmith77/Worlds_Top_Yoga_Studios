@@ -1,3 +1,4 @@
+require 'pry'
 class Scraper
   
   def get_page
@@ -5,6 +6,7 @@ class Scraper
   end
   
   def scrape_studios_index
+    binding.pry
     self.get_page.css("div.body-text__content")
   end
   
