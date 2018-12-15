@@ -1,12 +1,11 @@
 class WorldsTopYogaStudios::Scraper
   
   def get_page
-    doc = Nokogiri::HTML(open("https://www.yogiapproved.com/travel/9-uniquely-beautiful-yoga-studios-around-the-world/"))
+    doc = Nokogiri::HTML(open("https://www.manduka.com/yoga-mats.html"))
   end
   
   def scrape_studios_index
-    binding.pry
-    self.get_page.css("div.body-text__content")
+    self.get_page.css("li.col-sm-4 col-xs-6 item")
   end
   
 end
