@@ -23,9 +23,8 @@ class WorldsTopYogaStudios::CLI
     if input.to_i > 0
       the_studio = @all_studios[input.to_i - 1]
       puts "#{the_studio.name} - #{the_studio.location} - #{the_studio.url}"
-      elsif "list"
+      elsif input == "list"
       list_studios
-      
     else 
       puts "Not sure what you meant... Please enter 1-9 or exit"
     end
