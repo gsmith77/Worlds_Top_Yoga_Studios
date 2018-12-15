@@ -2,36 +2,32 @@ class WorldsTopYogaStudios::CLI
   
   def call
     puts "Here are 9 amazing yoga studios"
+    list_studios
     menu
     goodbye
+  end
+  
+  def list_studios
+    @all_studios = WorldsTopYogaStudios::Studio.studios
+    @all_studios.each.with_index(1) do |s, index|
+      puts "#{index}. #{s.name} - #{s.location} - #{s.url}"
+    end
   end
   
   def menu
     input = nil
     while input != "exit"
-    puts "Enter the number of which yoga studio you would like more information about:"
+    puts "Enter the number of which yoga studio you would like more information about or hit list to display the studios again:"
     input = gets.strip.downcase
-    case input
-    when "1"
-      puts "Yoga Studio 1 Information:"
-    when "2"
-      puts "Yoga Studio 2 Information:"
-    when "3"
-      puts "Yoga Studio 3 Information:"
-    when "4"
-      puts "Yoga Studio 4 Information:"
-    when "5"
-      puts "Yoga Studio 5 Information:"
-    when "6"
-      puts "Yoga Studio 6 Information:"
-    when "7"
-      puts "Yoga Studio 7 Information:"
-    when "8"
-      puts "Yoga Studio 8 Information:"
-    when "9"
-      puts "Yoga Studio 9 Information:"
+    
+    if input.to_i > 0
+      the_studio = @all_studios[input.to_i - 1]
+      puts "#{the_studio.name} - #{the_studio.location} - #{the_studio.url}"
+      elsif "list"
+      list_studios
+      
     else 
-      "Not sure what you meant... Please enter 1-9 or exit"
+      puts "Not sure what you meant... Please enter 1-9 or exit"
     end
   end
   
