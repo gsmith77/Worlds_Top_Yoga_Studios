@@ -9,7 +9,12 @@ class WorldsTopYogaStudios::Studio
     studio_1.location = "Philadelphia, Pennsylvania"
     studio_1.url = "mritayogawellness.com"
     
-    [studio_1]
+    studio_2 = self.new
+    studio_2.name = "GRRRRRRant"
+    studio_2.location = "YOOO"
+    studio_2.url = "WHY>"
+    
+    [studio_1, studio_2]
   end
   
   

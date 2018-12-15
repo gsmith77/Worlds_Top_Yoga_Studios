@@ -15,8 +15,9 @@ class WorldsTopYogaStudios::CLI
   end
   
   def menu
-    input = nil
+    input = ""
     while input != "exit"
+    puts "            "
     puts "Enter the number of which yoga studio you would like more information about or hit list to display the studios again:"
     input = gets.strip.downcase
     
@@ -26,6 +27,7 @@ class WorldsTopYogaStudios::CLI
       elsif input == "list"
       list_studios
     else 
+      puts "            "
       puts "Not sure what you meant... Please enter 1-9 or exit"
     end
   end
