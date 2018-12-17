@@ -21,5 +21,5 @@ class WorldsTopYogaStudios::Scraper
     scrape_studios_index.each do |s|
     WorldsTopYogaStudios::Studio.new_from_index_page(s)
   end
-  
+end
 end

@@ -3,19 +3,27 @@ class WorldsTopYogaStudios::Studio
   attr_accessor :name, :location, :url
   
   def self.new_from_index_page(s)
-    
+    self.new(s.css("h3").text, s.css("p em").text, s.css("p a").attribute("href").value)
   end
   
-  def intialize(name=nil, location=nil, url=nil, bio=nil)
+  @@all = []
+  
+  def intialize(name=nil, location=nil, url=nil)
     @name = name
-    @url = url
     @location = location
-    @bio = bio
+    @url = url
     @@all << self
   end
+  
+  def self.all
+    @@all
   end
   
-  def self.studios
+  def self.find(id)
+    self.all[id - 1]
+  end
+  
+  #def self.studios
     list_of_studios = []
     
     #studio_1 = self.new
@@ -29,7 +37,7 @@ class WorldsTopYogaStudios::Studio
     #studio_2.url = "WHY>"
     
     list_of_studios
-  end
+  #end
   
   
 end
