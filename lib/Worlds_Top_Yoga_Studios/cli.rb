@@ -6,14 +6,6 @@ class WorldsTopYogaStudios::CLI
     start
   end
   
-  def list_studios
-    binding.pry
-    @all_studios = WorldsTopYogaStudios::Studio.all
-    @all_studios.each.with_index(1) do |s, index|
-      puts "#{index}. #{s.name} - #{s.location} - #{s.url}"
-    end
-  end
-  
   def start
     puts ""
     puts "Enter the number of which yoga studio you would like more information about or hit list to display the studios again:"
@@ -26,12 +18,17 @@ class WorldsTopYogaStudios::CLI
     
     puts ""
     puts "Would you like to see another studio? Y or N"
-    if "Y"
+    if input == "Y"
       start
-      elsif "N"
+      elsif input == "N"
       goodbye
-    else ""
+      exit
+    else 
+      puts ""
       puts "Sorry did not understand that please tyoe 1-9 to get more information on a studio."
+      start
+    end
+  end
     
   def print_studio(studio)
     puts ""
@@ -45,5 +42,4 @@ class WorldsTopYogaStudios::CLI
   def goodbye
     puts "See you later! As always, namaste."
   end
-end
 end
