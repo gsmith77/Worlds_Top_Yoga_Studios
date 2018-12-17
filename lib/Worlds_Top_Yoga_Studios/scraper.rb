@@ -1,10 +1,13 @@
 class WorldsTopYogaStudios::Scraper
+  
+  def get_page
+    doc = Nokogiri::HTML(open("https://www.yogiapproved.com/travel/9-uniquely-beautiful-yoga-studios-around-the-world/"))
+  end
 
   
   def self.scrape_studios_index
-    doc = Nokogiri::HTML(open("https://www.yogiapproved.com/travel/9-uniquely-beautiful-yoga-studios-around-the-world/"))
     
-    doc.css("div#content-area").text #is the area that contains all of the data we want to scrape.
+    self.get_page.css("div#content-area").text #is the area that contains all of the data we want to scrape.
     
     #name_of_studio = doc.css("div#content-area").css("h3").first.text
     #location_of_studio = doc.css("div#content-area").css("p em").first.text
@@ -15,7 +18,8 @@ class WorldsTopYogaStudios::Scraper
   end
   
   def make_studios
-    WorldsTopYogaStudios::Studio.new_from_index_page. |s|
+    scrape_studios_index.each do |s|
+    WorldsTopYogaStudios::Studio.new_from_index_page(s)
   end
   
 end
