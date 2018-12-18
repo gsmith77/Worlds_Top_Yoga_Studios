@@ -10,7 +10,7 @@ class WorldsTopYogaStudios::CLI
     puts "Here are 9 amazing yoga studios"
     @all_studios = WorldsTopYogaStudios::Studio.all
     @all_studios.each.with_index(1) do |s, index|
-      puts "#{index}. #{s.name} - #{s.location} - #{s.url}"
+      puts "#{index}. #{s.name} - #{s.paragraph}"
     end
   end
   
@@ -22,7 +22,7 @@ class WorldsTopYogaStudios::CLI
     
     if input.to_i > 0
       the_studio = @all_studios[input.to_i - 1]
-      puts "#{the_studio.name} - #{the_studio.location} - #{the_studio.url}"
+      puts "#{the_studio.name} - #{the_studio.paragraph}"
       elsif "list"
       list_studios
     else

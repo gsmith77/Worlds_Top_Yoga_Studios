@@ -1,41 +1,56 @@
 class WorldsTopYogaStudios::Studio
   
-  attr_accessor :name, :location, :url
+  attr_accessor :name, :paragraph
   
-  def self.all
-    self.scrape_index_page
-  end
   
-  def self.scrape_index_page
-    yogas = []
-    doc = Nokogiri::HTML(open("https://www.yogiapproved.com/travel/9-uniquely-beautiful-yoga-studios-around-the-world/"))
-    s = doc.css("div#content-area")
-    s.each do |studios|
-    studio = self.new
-    studio.name = studios.css("h3").text
-    studio.location = studios.css("p em").text
-    studio.url = studios.css("p a").text
-    yogas << studio
-  end
-    yogas
-    binding.pry
-  end
- 
-  #def self.studios
-    list_of_studios = []
-    
-    #studio_1 = self.new
-    #studio_1.name = "Amrita Yoga and Wellness"
-    #studio_1.location = "Philadelphia, Pennsylvania"
-    #studio_1.url = "mritayogawellness.com"
-    
-    #studio_2 = self.new
-    #studio_2.name = "GRRRRRRant"
-    #studio_2.location = "YOOO"
-    #studio_2.url = "WHY>"
-    
-    list_of_studios
+  #def self.studio_names
+   # yogas = []
+    #doc = Nokogiri::HTML(open("https://fitt.co/austin/incredible-studios-practice-yoga-austin/"))
+   # s = doc.css("div.item-single__list").css("h2.h2.list-loop__title")
+   
+    #s.map do |studios|
+      # studio = self.new
+     #  studio.name = studios.text
+    #  yogas << studio
+   # end
   #end
+  
+  def self.fix_it_all
+    yogas = []
+    doc = Nokogiri::HTML(open("https://fitt.co/austin/incredible-studios-practice-yoga-austin/"))
+    s = doc.css("div.l-container.l-weighted-left.single-post-container")
+    s.each do |studios|
+      studio = self.new
+   
+      studio.name = studios.css("h2.h2.list-loop__title").text
+      studio.paragraph = studios.css("div.list-loop__description.t-content p").text
+      yogas << studio
+    end
+    yogas
+  end
+  
+  #def self.paragraphs
+    #all = []
+    #doc = Nokogiri::HTML(open("https://fitt.co/austin/incredible-studios-practice-yoga-austin/"))
+    
+     #s = doc.css("div.list-loop__description.t-content p")
+     #s.map do |p|
+       
+       #all << p.text
+     #end
+     #all
+    
+  #end
+  
+  #def self.flatten
+    #all = []
+    #all << self.paragraphs + self.studio_names
+   # all.flatten
+  #end
+ 
+  def self.all
+    self.fix_it_all
+  end
   
   
 end
