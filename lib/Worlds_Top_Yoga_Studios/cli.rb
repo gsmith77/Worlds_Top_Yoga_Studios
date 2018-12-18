@@ -7,6 +7,7 @@ class WorldsTopYogaStudios::CLI
   
   def list_studios
     puts "Here are 18 amazing yoga studios in Austin, Tx"
+    sleep(1.8)
     @all_studios = WorldsTopYogaStudios::Studio.all
     @all_studios.each.with_index(1) do |s, index|
       puts "#{index}. #{s.name}"
