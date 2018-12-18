@@ -1,36 +1,41 @@
 class WorldsTopYogaStudios::CLI
   
   def call
-    list_studios
     menu
     goodbye
   end
   
   def list_studios
-    puts "Here are 9 amazing yoga studios"
+    puts "Here are 18 amazing yoga studios in Austin, Tx"
     @all_studios = WorldsTopYogaStudios::Studio.all
     @all_studios.each.with_index(1) do |s, index|
-      puts "#{index}. #{s.name} - #{s.paragraph}"
+      puts "#{index}. #{s.name}"
     end
   end
   
+  
   def menu
+    input = ""
+    while input != "exit"
     puts ""
-    puts "Enter the number of which yoga studio you would like more information about or hit list to display the studios again:"
+    puts "Enter the number of which yoga studio you would like more information about or hit list to display the studios:"
     
     input = gets.strip.downcase
     
-    if input.to_i > 0
-      the_studio = @all_studios[input.to_i - 1]
-      puts "#{the_studio.name} - #{the_studio.paragraph}"
-      elsif "list"
+    if input == "list"
       list_studios
-    else
-      puts "Do not understand what you mean... type 1-9 ot type exit to exit"
-    end
+      elsif input.to_i.between?(1, WorldsTopYogaStudios::Studio.all.length)
+      the_studio = WorldsTopYogaStudios::Studio.all[input.to_i - 1]
+      puts "#{the_studio.name}"
+    elsif input != "list"
+      puts "Do not understand what you mean... type 1-18 or type exit to exit"
+    else input == "exit"
+      goodbye
   end
+end
     
   def goodbye
     puts "See you later! As always, namaste."
   end
+end
 end
