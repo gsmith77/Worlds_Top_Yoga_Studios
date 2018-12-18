@@ -2,27 +2,20 @@ class WorldsTopYogaStudios::Studio
   
   attr_accessor :name, :location, :url
   
-  def self.new_from_index_page(s)
-    self.new(s.css("h3").text, s.css("p em").text, s.css("p a").attribute("href").value)
-  end
-  
-  @@all = []
-  
-  def intialize(name=nil, location=nil, url=nil)
-    @name = name
-    @location = location
-    @url = url
-    @@all << self
-  end
-  
   def self.all
-    @@all
+    self.scrape_index_page
   end
   
-  def self.find(id)
-    self.all[id - 1]
+  def self.scrape_index_page
+    doc = Nokogiri::HTML(open("https://www.yogiapproved.com/travel/9-uniquely-beautiful-yoga-studios-around-the-world/"))
+    
+    studio = self.new
+    s = doc.css("div#content-area p")
+    studio.name = s.css("h3").text
+    studio.location = s.css("p em").text
+    studio.url = s.css("p a").attribute("href").value
   end
-  
+ 
   #def self.studios
     list_of_studios = []
     

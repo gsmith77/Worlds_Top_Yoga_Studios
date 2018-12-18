@@ -1,42 +1,33 @@
 class WorldsTopYogaStudios::CLI
   
   def call
-    WorldsTopYogaStudios::Scraper.new.make_studios
-    puts "Here are 9 amazing yoga studios"
-    start
+    list_studios
+    menu
+    goodbye
   end
   
-  def start
+  def list_studios
+    puts "Here are 9 amazing yoga studios"
+    @all_studios = WorldsTopYogaStudios::Studio.all
+    @all_studios.each.with_index(1) do |s, index|
+      puts "#{index}. #{s.name} - #{s.location} - #{s.url}"
+    end
+  end
+  
+  def menu
     puts ""
     puts "Enter the number of which yoga studio you would like more information about or hit list to display the studios again:"
     
-    input = gets.strip
+    input = gets.strip.downcase
     
-    studio = WorldsTopYogaStudios::Studio.find(input.to_i)
-    
-    print_studio(studio)
-    
-    puts ""
-    puts "Would you like to see another studio? Y or N"
-    if input == "Y"
-      start
-      elsif input == "N"
-      goodbye
-      exit
-    else 
-      puts ""
-      puts "Sorry did not understand that please tyoe 1-9 to get more information on a studio."
-      start
+    if input.to_i > 0
+      the_studio = @all_studios[input.to_i - 1]
+      puts "#{the_studio.name} - #{the_studio.location} - #{the_studio.url}"
+      elsif "list"
+      list_studios
+    else
+      puts "Do not understand what you mean... type 1-9 ot type exit to exit"
     end
-  end
-    
-  def print_studio(studio)
-    puts ""
-    puts "---------- #{studio.name} -----------"
-    puts ""
-    puts "Location:  #{studio.location}"
-    puts "Website:   #{studio.url}"
-    puts ""
   end
     
   def goodbye
