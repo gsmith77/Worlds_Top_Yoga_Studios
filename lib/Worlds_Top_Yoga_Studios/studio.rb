@@ -7,13 +7,18 @@ class WorldsTopYogaStudios::Studio
   end
   
   def self.scrape_index_page
+    yogas = []
     doc = Nokogiri::HTML(open("https://www.yogiapproved.com/travel/9-uniquely-beautiful-yoga-studios-around-the-world/"))
-    
+    s = doc.css("div#content-area")
+    s.each do |studios|
     studio = self.new
-    s = doc.css("div#content-area p")
-    studio.name = s.css("h3").text
-    studio.location = s.css("p em").text
-    studio.url = s.css("p a").attribute("href").value
+    studio.name = studios.css("h3").text
+    studio.location = studios.css("p em").text
+    studio.url = studios.css("p a").text
+    yogas << studio
+  end
+    yogas
+    binding.pry
   end
  
   #def self.studios
