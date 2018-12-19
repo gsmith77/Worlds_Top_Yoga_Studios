@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version       = AustinsTopYogaStudios::VERSION
   spec.authors       = ["'grant smith'"]
   spec.email         = ["'grantsmith1256@gmail.com'"]
-
+  
   spec.summary       = %q{"Top Yoga Stuidos to Visit in Austin"}
   spec.description   = %q{"Austin, Tx is a remarkable place of creativity and an array of vibes! Eighteen yoga studios have been selected and will be given a descrption to find which one you would like to visit most upon wanting to learn more."}
   spec.homepage      = "https://github.com/gsmith77/Austins_Top_Yoga_Studios"
