@@ -1,6 +1,6 @@
 class WorldsTopYogaStudios::Studio
   
-  attr_accessor :name
+  attr_accessor :name, :paragraph
 
   
   def self.fix_it_all
@@ -10,6 +10,7 @@ class WorldsTopYogaStudios::Studio
     s.each do |studios|
       studio = self.new
       studio.name = studios.css("h2.h2.list-loop__title").text
+      studio.paragraph = studios.css("div.list-loop__description.t-content").text.strip
       yogas << studio
     end
     yogas

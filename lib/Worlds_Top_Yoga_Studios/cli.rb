@@ -1,5 +1,7 @@
 class WorldsTopYogaStudios::CLI
   
+  attr_reader :input
+  
   def call
     menu
     goodbye
@@ -16,27 +18,26 @@ class WorldsTopYogaStudios::CLI
   
   
   def menu
-    input = ""
     while input != "exit"
-    puts ""
-    puts "Enter the number of which yoga studio you would like more information about or hit list to display the studios:"
+     puts ""
+     puts "Enter the number of which yoga studio you would like more information about or hit list to display the studios:"
     
-    input = gets.strip.downcase
+     @input = gets.strip.downcase
     
-    if input == "list"
+      if input == "list"
       list_studios
       elsif input.to_i.between?(1, WorldsTopYogaStudios::Studio.all.length)
       the_studio = WorldsTopYogaStudios::Studio.all[input.to_i - 1]
-      puts "#{the_studio.name}"
-    elsif input != "list"
+      puts "#{the_studio.name} - #{the_studio.paragraph}"
+      elsif input == "exit"
+      break
+      else 
       puts "Do not understand what you mean... type 1-18 or type exit to exit"
-    else input == "exit"
-      goodbye
-  end
-end
-    
-  def goodbye
-    puts "See you later! As always, namaste."
-  end
-end
+    end
+   end
+ end
+ 
+ def goodbye
+   puts "See you later! As always, namaste."
+ end
 end
