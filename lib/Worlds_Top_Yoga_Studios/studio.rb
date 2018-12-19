@@ -3,7 +3,7 @@ class WorldsTopYogaStudios::Studio
   attr_accessor :name, :paragraph
 
   
-  def self.fix_it_all
+  def self.scrape_and_create_from_page
     yogas = []
     doc = Nokogiri::HTML(open("https://fitt.co/austin/incredible-studios-practice-yoga-austin/"))
     s = doc.css("li.list-loop__item")
@@ -18,8 +18,6 @@ class WorldsTopYogaStudios::Studio
   
   
   def self.all
-    self.fix_it_all
+    self.scrape_and_create_from_page
   end
-  
-  
 end
