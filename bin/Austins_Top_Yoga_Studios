@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "./lib/Austins_Top_Yoga_Studios"
+
+
+AustinsTopYogaStudios::CLI.new.call

@@ -1,4 +1,4 @@
-class WorldsTopYogaStudios::CLI
+class AustinsTopYogaStudios::CLI
   
   attr_reader :input
   
@@ -10,7 +10,7 @@ class WorldsTopYogaStudios::CLI
   def list_studios
     puts "Here are 18 amazing yoga studios in Austin, Tx"
     sleep(1.8)
-    @all_studios = WorldsTopYogaStudios::Studio.all
+    @all_studios = AustinsTopYogaStudios::Studio.all
     @all_studios.each.with_index(1) do |s, index|
       puts "#{index}. #{s.name}"
     end
@@ -26,8 +26,8 @@ class WorldsTopYogaStudios::CLI
     
       if input == "list"
       list_studios
-      elsif input.to_i.between?(1, WorldsTopYogaStudios::Studio.all.length)
-      the_studio = WorldsTopYogaStudios::Studio.all[input.to_i - 1]
+      elsif input.to_i.between?(1, AustinsTopYogaStudios::Studio.all.length)
+      the_studio = AustinsTopYogaStudios::Studio.all[input.to_i - 1]
       puts "#{the_studio.name} - #{the_studio.paragraph}"
       elsif input == "exit"
       break

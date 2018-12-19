@@ -1,4 +1,4 @@
-class WorldsTopYogaStudios::Studio
+class AustinsTopYogaStudios::Studio
   
   attr_accessor :name, :paragraph
 

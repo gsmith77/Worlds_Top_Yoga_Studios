@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-require "./lib/Worlds_Top_Yoga_Studios"
-
-
-WorldsTopYogaStudios::CLI.new.call
