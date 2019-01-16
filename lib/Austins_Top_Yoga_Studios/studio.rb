@@ -1,23 +1,19 @@
 class AustinsTopYogaStudios::Studio
-  
+
   attr_accessor :name, :paragraph
 
-  
-  def self.scrape_and_create_from_page
-    yogas = []
-    doc = Nokogiri::HTML(open("https://fitt.co/austin/incredible-studios-practice-yoga-austin/"))
-    s = doc.css("li.list-loop__item")
-    s.each do |studios|
-      studio = self.new
-      studio.name = studios.css("h2.h2.list-loop__title").text
-      studio.paragraph = studios.css("div.list-loop__description.t-content").text.strip
-      yogas << studio
-    end
-    yogas
+  def initialize(name:, paragraph:)
+    @name = name
+    @paragraph = paragraph
   end
-  
-  
+
   def self.all
-    self.scrape_and_create_from_page
+    @@all ||= self.load_from_scraper
+  end
+
+  def self.load_from_scraper
+    Scraper.scraper.map do |studio_hash|
+      self.new({studio_hash})
+    end
   end
 end
