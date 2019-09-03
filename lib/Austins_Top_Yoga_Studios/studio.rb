@@ -1,7 +1,6 @@
 class AustinsTopYogaStudios::Studio
 
   attr_accessor :name, :paragraph
-
   def initialize(name:, paragraph:)
     @name = name
     @paragraph = paragraph
